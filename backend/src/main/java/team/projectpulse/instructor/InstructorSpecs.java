@@ -3,21 +3,23 @@ package team.projectpulse.instructor;
 import team.projectpulse.course.Course;
 import org.springframework.data.jpa.domain.Specification;
 
+import java.util.Locale;
+
 public class InstructorSpecs {
 
     public static Specification<Instructor> hasFirstName(String providedFirstName) {
         return (root, query, criteriaBuilder) ->
-                criteriaBuilder.equal(criteriaBuilder.lower(root.get("firstName")), providedFirstName.toLowerCase());
+                criteriaBuilder.equal(criteriaBuilder.lower(root.get("firstName")), providedFirstName.toLowerCase(Locale.ROOT));
     }
 
     public static Specification<Instructor> hasLastName(String providedLastName) {
         return (root, query, criteriaBuilder) ->
-                criteriaBuilder.equal(criteriaBuilder.lower(root.get("lastName")), providedLastName.toLowerCase());
+                criteriaBuilder.equal(criteriaBuilder.lower(root.get("lastName")), providedLastName.toLowerCase(Locale.ROOT));
     }
 
     public static Specification<Instructor> hasEmail(String providedEmail) {
         return (root, query, criteriaBuilder) ->
-                criteriaBuilder.equal(criteriaBuilder.lower(root.get("email")), providedEmail.toLowerCase());
+                criteriaBuilder.equal(criteriaBuilder.lower(root.get("email")), providedEmail.toLowerCase(Locale.ROOT));
     }
 
     public static Specification<Instructor> hasCourse(Course course) {
