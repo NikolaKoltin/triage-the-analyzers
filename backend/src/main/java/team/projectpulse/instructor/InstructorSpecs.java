@@ -5,7 +5,11 @@ import org.springframework.data.jpa.domain.Specification;
 
 import java.util.Locale;
 
-public class InstructorSpecs {
+public final class InstructorSpecs {
+
+    private InstructorSpecs() {
+        // Holds only static Specification factories; never instantiated (InstantiableUtilityClass).
+    }
 
     public static Specification<Instructor> hasFirstName(String providedFirstName) {
         return (root, query, criteriaBuilder) ->
