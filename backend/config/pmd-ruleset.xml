@@ -13,5 +13,8 @@
          xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
     <description>PMD quickstart, with Project Pulse's decisions.</description>
     <rule ref="rulesets/java/quickstart.xml">
+        <!-- D2: every flagged empty constructor is the no-arg constructor JPA (26 entities) or Jackson/reflection (4 DTOs) needs. Writing it out is deliberate: if a second constructor is added later, an implicit no-arg constructor disappears and JPA fails at runtime. -->
+        <exclude name="UncommentedEmptyConstructor"/>
+        <exclude name="UnnecessaryConstructor"/>
     </rule>
 </ruleset>
