@@ -37,6 +37,10 @@ public class InstructorSecurityService {
      * @param instructorId the id of the instructor we need to access, this is NOT the current user's ID
      * @return
      */
+    // PMD SimplifyBooleanReturns, not worth it: folding the null guard into "return instructor != null && ..." would
+    // behave the same, but the explicit guard is how every *SecurityService in Project Pulse states the fail-closed
+    // rule in this class comment (an id that names no row is denied); keeping one shape across all nine is the point.
+    @SuppressWarnings("PMD.SimplifyBooleanReturns")
     public boolean isCurrentUserAdminOfInstructorCourse(Integer instructorId) {
         Integer adminIdFromJwt = this.userUtils.getUserId();
         Instructor instructor = this.instructorRepository.findById(instructorId).orElse(null);

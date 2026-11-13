@@ -7,4 +7,6 @@
 
      Unlike the baseline, this file may grow, but every entry is a reviewed decision. -->
 <FindBugsFilter>
+    <!-- D1: EI_EXPOSE_REP and EI_EXPOSE_REP2 turned off for the whole project. Every baselined finding is sharing by design: JPA entities return their association collections (Hibernate tracks those exact collections, so a defensive copy would silently drop changes), Spring beans store the collaborators injected into them, and DTO records carry lists that are serialized immediately. None is accidental exposure. -->
+    <Match><Bug pattern="EI_EXPOSE_REP,EI_EXPOSE_REP2"/></Match>
 </FindBugsFilter>

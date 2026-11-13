@@ -3,16 +3,22 @@ package team.projectpulse.course;
 import team.projectpulse.instructor.Instructor;
 import org.springframework.data.jpa.domain.Specification;
 
-public class CourseSpecs {
+import java.util.Locale;
+
+public final class CourseSpecs {
+
+    private CourseSpecs() {
+        // Holds only static Specification factories; never instantiated (InstantiableUtilityClass).
+    }
 
     public static Specification<Course> containsCourseName(String providedCourseName) {
         return (root, query, criteriaBuilder) ->
-                criteriaBuilder.like(criteriaBuilder.lower(root.get("courseName")), "%" + providedCourseName.toLowerCase() + "%");
+                criteriaBuilder.like(criteriaBuilder.lower(root.get("courseName")), "%" + providedCourseName.toLowerCase(Locale.ROOT) + "%");
     }
 
     public static Specification<Course> containsCourseDescription(String providedCourseDescription) {
         return (root, query, criteriaBuilder) ->
-                criteriaBuilder.like(criteriaBuilder.lower(root.get("courseDescription")), "%" + providedCourseDescription.toLowerCase() + "%");
+                criteriaBuilder.like(criteriaBuilder.lower(root.get("courseDescription")), "%" + providedCourseDescription.toLowerCase(Locale.ROOT) + "%");
     }
 
     public static Specification<Course> hasInstructor(Instructor instructor) {

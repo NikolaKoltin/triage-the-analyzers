@@ -113,7 +113,7 @@ public class InstructorService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         // If the instructor is also an admin, then the instructor can update all the fields
-        if (authentication.getAuthorities().stream().anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_admin"))) {
+        if (authentication.getAuthorities().stream().anyMatch(grantedAuthority -> "ROLE_admin".equals(grantedAuthority.getAuthority()))) {
             oldInstructor.setEnabled(update.isEnabled());
             oldInstructor.setRoles(update.getRoles());
         }
